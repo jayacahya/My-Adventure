@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah dan Kurang</title>
+   
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tambah dan Kurang</h1>
+        <div class="result" id="result">0</div>
+        <button id="addBtn">Tambah (+)</button>
+        <button id="subtractBtn">Kurang (-)</button>
+    </div>
+    <script src="script.js"></script>
+    <script>
+    let count = 0;
+
+const resultDisplay = document.getElementById('result');
+const addBtn = document.getElementById('addBtn');
+const subtractBtn = document.getElementById('subtractBtn');
+
+addBtn.addEventListener('click', () => {
+    count++;
+    updateDisplay();
+});
+
+subtractBtn.addEventListener('click', () => {
+    count--;
+    updateDisplay();
+});
+
+function updateDisplay() {
+    resultDisplay.textContent = count;
+}
+</script>
+
+</body>
+</html>
