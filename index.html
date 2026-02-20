@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Adventure · Bersih & Rapi</title>
+  <title>My Adventure · dengan Musik</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,7 +14,6 @@
   <!-- Font Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Custom style & keyframes -->
   <style>
     body { font-family: 'Poppins', sans-serif; }
     @keyframes fadeUp {
@@ -22,7 +21,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-fadeUp { animation: fadeUp 1.2s ease-out forwards; }
-
     @keyframes menuFade {
       from { opacity: 0; transform: translateY(-10px) scale(0.95); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -32,9 +30,10 @@
 </head>
 <body class="bg-slate-50 text-slate-800 scroll-smooth">
 
-  <!-- ================= NAVBAR (TUNGGAL) ================= -->
+  <!-- ================= NAVBAR ================= -->
   <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
       <h1 id="navLogo" class="font-bold text-xl transition-colors duration-300 text-white">My Adventure.</h1>
 
       <!-- Desktop menu -->
@@ -46,11 +45,16 @@
         <li><a href="#contact" class="hover:text-emerald-500">Contact</a></li>
       </ul>
 
-      <!-- Mobile button -->
-      <button id="menuBtn" class="md:hidden text-2xl transition-colors duration-300 text-white">☰</button>
+      <!-- Kontrol Musik & Mobile button -->
+      <div class="flex items-center gap-2">
+        <!-- Tombol play/pause musik -->
+        <button id="musicToggle" class="text-white text-2xl transition-colors duration-300 hover:text-emerald-300" title="Putar/Jeda lagu">🔇</button>
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="md:hidden text-2xl transition-colors duration-300 text-white">☰</button>
+      </div>
     </div>
 
-    <!-- Mobile menu (hidden by default) -->
+    <!-- Mobile menu -->
     <div id="mobileMenu" class="hidden md:hidden absolute right-6 top-20 w-56 bg-white rounded-2xl shadow-xl p-4 space-y-2 animate-menu">
       <a href="#beranda" class="block py-2 px-3 rounded-lg hover:bg-emerald-50">Beranda</a>
       <a href="#about" class="block py-2 px-3 rounded-lg hover:bg-emerald-50">About</a>
@@ -60,13 +64,21 @@
     </div>
   </nav>
 
+  <!-- ================= AUDIO (tersembunyi) ================= -->
+  <audio id="bgMusic" preload="none" loop>
+    <!-- Ganti src dengan file about-you.mp3 yang sudah disimpan di folder yang sama -->
+    <source src="about-you.mp3" type="audio/mpeg">
+    Browser tidak mendukung audio.
+  </audio>
+
   <!-- ================= HERO ================= -->
   <section id="beranda" class="h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470');">
     <div class="absolute inset-0 bg-black/60"></div>
     <div class="relative text-center text-white px-6 animate-fadeUp">
       <h1 class="text-4xl md:text-6xl font-bold mb-4">Jelajahi Alam Pegunungan</h1>
       <p class="text-lg md:text-xl mb-6 text-slate-200">Keindahan, ketenangan, dan petualangan</p>
-      <a href="#about" class="bg-emerald-600 hover:bg-emerald-700 px-8 py-3 rounded-full font-semibold transition hover:scale-105">Mulai Jelajah</a>
+      <!-- Tombol dengan ID untuk memulai lagu -->
+      <a id="startExploreBtn" href="#about" class="bg-emerald-600 hover:bg-emerald-700 px-8 py-3 rounded-full font-semibold transition hover:scale-105">Mulai Jelajah</a>
     </div>
   </section>
 
@@ -91,12 +103,11 @@
     </div>
   </section>
 
-  <!-- ================= GALERI (VERSI LENGKAP DENGAN 15 FOTO) ================= -->
+  <!-- ================= GALERI (15 foto) ================= -->
   <section id="galeri" class="py-28 bg-gradient-to-b from-slate-100 to-white">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-emerald-700" data-aos="fade-up">Galeri My Adventure</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-
         <!-- 1 Gunung Putri -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m2.jpg" class="w-full h-full object-cover transition duration-700 ease-out group-hover:scale-110" />
@@ -106,7 +117,6 @@
             <p class="text-emerald-300 text-sm">Lembang</p>
           </div>
         </div>
-
         <!-- 2 Papandayan -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m3.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -116,7 +126,6 @@
             <p class="text-emerald-300 text-sm">Hutan Mati • Garut</p>
           </div>
         </div>
-
         <!-- 3 Ciremai -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m4.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -126,7 +135,6 @@
             <p class="text-emerald-300 text-sm">Majalengka • Kuningan</p>
           </div>
         </div>
-
         <!-- 4 Kawah Putih -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m13.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -136,7 +144,6 @@
             <p class="text-emerald-300 text-sm">Rancabali • Ciwidey</p>
           </div>
         </div>
-
         <!-- 5 Edelweis Papandayan -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m11.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -146,7 +153,6 @@
             <p class="text-emerald-300 text-sm">Papandayan • Garut</p>
           </div>
         </div>
-
         <!-- 6 Malabar -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m8.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -156,7 +162,6 @@
             <p class="text-emerald-300 text-sm">Pangalengan</p>
           </div>
         </div>
-
         <!-- 7 Pangrango -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="pangrango.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -166,7 +171,6 @@
             <p class="text-emerald-300 text-sm">Cianjur • Sukabumi</p>
           </div>
         </div>
-
         <!-- 8 Mandalawangi -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="mandalawangi.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -176,8 +180,7 @@
             <p class="text-emerald-300 text-sm">Pangrango • Cianjur • Sukabumi</p>
           </div>
         </div>
-
-        <!-- 9 Edelweis (kedua, beda gambar) -->
+        <!-- 9 Edelweis (kedua) -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="edelweis.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
@@ -186,7 +189,6 @@
             <p class="text-emerald-300 text-sm">Pangrango • Cianjur • Sukabumi</p>
           </div>
         </div>
-
         <!-- 10 Danau Papandayan -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m15.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -196,7 +198,6 @@
             <p class="text-emerald-300 text-sm">Papandayan • Garut</p>
           </div>
         </div>
-
         <!-- 11 m14 -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m14.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -206,7 +207,6 @@
             <p class="text-emerald-300 text-sm"></p>
           </div>
         </div>
-
         <!-- 12 m10 (Ciremai) -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m10.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -216,7 +216,6 @@
             <p class="text-emerald-300 text-sm">Majalengka • Kuningan</p>
           </div>
         </div>
-
         <!-- 13 m6 Burangrang -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="m6.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -226,7 +225,6 @@
             <p class="text-emerald-300 text-sm">Lembang</p>
           </div>
         </div>
-
         <!-- 14 Kebun Teh -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="kebunteh.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -236,7 +234,6 @@
             <p class="text-emerald-300 text-sm">UpasHill • Lembang</p>
           </div>
         </div>
-
         <!-- 15 UpasHill -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer hover:shadow-2xl hover:shadow-emerald-500/20 transition duration-500">
           <img src="upas.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
@@ -250,17 +247,15 @@
     </div>
   </section>
 
-  <!-- ================= TEAM ADVENTURE ================= -->
+  <!-- ================= TEAM ================= -->
   <section id="team" class="py-28 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16" data-aos="fade-up">
         <h2 class="text-3xl md:text-4xl font-bold text-emerald-700">Team Mountain Adventure</h2>
         <p class="text-slate-500 mt-4 max-w-2xl mx-auto">Momen perjalanan bersama tim dalam menjelajahi berbagai gunung.</p>
       </div>
-
-      <!-- Grid 8 card (team) -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <!-- Kawah Putih -->
+        <!-- 8 card team (ringkas) -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl h-[420px] cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
           <img src="team-kawahputih.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -269,7 +264,6 @@
             <p class="text-emerald-300 text-sm mt-1">Ciwidey • Bandung</p>
           </div>
         </div>
-        <!-- Upas -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl h-[420px] cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
           <img src="team-upas.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -278,7 +272,6 @@
             <p class="text-emerald-300 text-sm mt-1">Lembang</p>
           </div>
         </div>
-        <!-- Ciremai -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl h-[420px] cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
           <img src="team-ciremai.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -287,7 +280,6 @@
             <p class="text-emerald-300 text-sm mt-1">Majalengka • Kuningan</p>
           </div>
         </div>
-        <!-- Burangrang -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl h-[420px] cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
           <img src="team-burangrang.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -296,7 +288,6 @@
             <p class="text-emerald-300 text-sm mt-1">Lembang</p>
           </div>
         </div>
-        <!-- Malabar -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl h-[420px] cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
           <img src="team-malabar.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -305,7 +296,6 @@
             <p class="text-emerald-300 text-sm mt-1">Pangalengan</p>
           </div>
         </div>
-        <!-- Papandayan -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl h-[420px] cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
           <img src="team-papandayan.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -314,7 +304,6 @@
             <p class="text-emerald-300 text-sm mt-1">Garut</p>
           </div>
         </div>
-        <!-- Putri -->
         <div data-aos="zoom-in" class="group relative overflow-hidden rounded-3xl h-[420px] cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
           <img src="team-putri.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -323,7 +312,6 @@
             <p class="text-emerald-300 text-sm mt-1">Lembang</p>
           </div>
         </div>
-        <!-- Pangrango (lebih lebar) -->
         <div data-aos="zoom-in" class="relative group overflow-hidden rounded-3xl shadow-lg md:col-span-2 transition duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
           <img src="team-pangrango.jpg" class="w-full h-[320px] md:h-[420px] object-cover object-top md:object-center transition duration-700 group-hover:scale-110" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-90"></div>
@@ -353,12 +341,10 @@
   <!-- ================= FOOTER ================= -->
   <footer class="bg-emerald-900 text-emerald-100 pt-16 pb-6">
     <div class="max-w-7xl mx-auto px-6 grid gap-10 sm:grid-cols-2 md:grid-cols-4">
-      <!-- Brand -->
       <div>
         <h3 class="text-xl font-bold text-white mb-3">My Adventure</h3>
         <p class="text-sm leading-relaxed text-emerald-200">Website personal bertema pegunungan yang menggabungkan desain modern, nuansa hijau alami, dan pengalaman visual yang nyaman di semua perangkat.</p>
       </div>
-      <!-- Navigasi -->
       <div>
         <h4 class="font-semibold text-white mb-4">Tautan</h4>
         <ul class="space-y-2 text-sm">
@@ -369,7 +355,6 @@
           <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
         </ul>
       </div>
-      <!-- Kontak -->
       <div>
         <h4 class="font-semibold text-white mb-4">Kontak</h4>
         <ul class="space-y-2 text-sm text-emerald-200">
@@ -378,19 +363,15 @@
           <li>Alamat: Jl. Haji Gofur No. 20, RT 02 RW 02 Gang Karya Bakti IV, Desa Gadobangkong, Kecamatan Ngamprah, Bandung Barat, Indonesia</li>
         </ul>
       </div>
-      <!-- Sosial -->
       <div>
         <h4 class="font-semibold text-white mb-4">Media Sosial</h4>
         <div class="flex gap-4">
-          <!-- WhatsApp -->
           <a href="https://wa.me/6281288182325?text=Halo%20saya%20tertarik%20dengan%20portfolio%20Anda" target="_blank" aria-label="WhatsApp" class="w-10 h-10 flex items-center justify-center rounded-full bg-emerald-800 hover:bg-white text-white hover:text-emerald-700 transition duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5"><path d="M20.52 3.48A11.91 11.91 0 0012.04 0C5.41 0 .03 5.38.03 12c0 2.12.55 4.19 1.6 6.02L0 24l6.17-1.62a11.94 11.94 0 005.87 1.5h.01c6.63 0 12-5.38 12-12a11.9 11.9 0 00-3.53-8.4zM12.05 21.5a9.44 9.44 0 01-4.82-1.33l-.34-.2-3.66.96.98-3.56-.22-.36a9.47 9.47 0 1110.06 4.49zm5.45-7.28c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.48-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.24 5.13 4.54.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35z"/></svg>
           </a>
-          <!-- Instagram -->
           <a href="https://instagram.com/jaya_c.n" target="_blank" aria-label="Instagram" class="w-10 h-10 flex items-center justify-center rounded-full bg-emerald-800 hover:bg-white text-white hover:text-emerald-700 transition duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm5.5-.5a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
           </a>
-          <!-- TikTok -->
           <a href="https://tiktok.com/@jayy_cahya23" target="_blank" aria-label="TikTok" class="w-10 h-10 flex items-center justify-center rounded-full bg-emerald-800 hover:bg-white text-white hover:text-emerald-700 transition duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5"><path d="M21 8.1c-1.7 0-3.3-.5-4.6-1.4v7.1a6.6 6.6 0 11-5.7-6.5v3.5a3.1 3.1 0 103.2 3.1V0h3.2c.1 1.4.7 2.7 1.7 3.7 1 1 2.3 1.6 3.7 1.7v2.7z"/></svg>
           </a>
@@ -402,19 +383,20 @@
     </div>
   </footer>
 
-  <!-- ================= SCRIPT (SATU KALI) ================= -->
+  <!-- ================= SCRIPT ================= -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     // Inisialisasi AOS
     AOS.init({ duration: 1000, once: true });
 
-    // Navbar scroll effect
+    // Navbar scroll effect (termasuk tombol musicToggle)
     const navbar = document.getElementById('navbar');
     const navLinks = document.getElementById('navLinks');
     const navLogo = document.getElementById('navLogo');
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const musicToggle = document.getElementById('musicToggle');
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -423,12 +405,14 @@
         navLinks.classList.remove('text-white'); navLinks.classList.add('text-emerald-700');
         navLogo.classList.remove('text-white'); navLogo.classList.add('text-emerald-700');
         menuBtn.classList.remove('text-white'); menuBtn.classList.add('text-emerald-700');
+        musicToggle.classList.remove('text-white'); musicToggle.classList.add('text-emerald-700');
       } else {
         navbar.classList.add('bg-transparent');
         navbar.classList.remove('bg-white/70', 'backdrop-blur', 'shadow');
         navLinks.classList.add('text-white'); navLinks.classList.remove('text-emerald-700');
         navLogo.classList.add('text-white'); navLogo.classList.remove('text-emerald-700');
         menuBtn.classList.add('text-white'); menuBtn.classList.remove('text-emerald-700');
+        musicToggle.classList.add('text-white'); musicToggle.classList.remove('text-emerald-700');
       }
     });
 
@@ -448,6 +432,55 @@
       emailjs.send('service_Mx397gb', 'template_0mpku0e', params)
         .then(() => { alert('Pesan berhasil dikirim, Terima kasih!'); this.reset(); })
         .catch(() => alert('Pesan gagal dikirim, coba lagi.'));
+    });
+
+    // ========== FITUR MUSIK ==========
+    const audio = document.getElementById('bgMusic');
+    const startBtn = document.getElementById('startExploreBtn');
+    let isPlaying = false;
+
+    // Fungsi untuk memutar/menjeda musik
+    function toggleMusic(play) {
+      if (play) {
+        audio.play()
+          .then(() => {
+            isPlaying = true;
+            musicToggle.textContent = '🔊'; // speaker nyala
+          })
+          .catch(err => {
+            console.warn('Gagal memutar audio:', err);
+            alert('File about-you.mp3 tidak ditemukan atau tidak dapat diputar. Pastikan file tersedia.');
+          });
+      } else {
+        audio.pause();
+        isPlaying = false;
+        musicToggle.textContent = '🔇';
+      }
+    }
+
+    // Klik tombol mulai jelajah -> putar musik dan pindah ke #about
+    startBtn.addEventListener('click', (e) => {
+      e.preventDefault();          // cegah lompat dulu
+      if (!isPlaying) {
+        toggleMusic(true);
+      }
+      // pindah ke #about setelah musik dipicu
+      window.location.href = '#about';
+    });
+
+    // Klik tombol musik toggle (speaker)
+    musicToggle.addEventListener('click', () => {
+      if (isPlaying) {
+        toggleMusic(false);
+      } else {
+        toggleMusic(true);
+      }
+    });
+
+    // Jika audio berakhir (opsional, ganti icon)
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
+      musicToggle.textContent = '🔇';
     });
 
     // Hapus hash dari URL saat load
